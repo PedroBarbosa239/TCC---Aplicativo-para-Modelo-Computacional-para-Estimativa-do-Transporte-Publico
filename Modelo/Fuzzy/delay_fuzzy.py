@@ -50,8 +50,8 @@ class DelayFuzzySystem:
 
         print(f"{len(rules)} regras carregadas.")
 
-        # Analisa a base de regras
-        self.knowledge.analyze_rules()
+        # Analisa a base de regras - habilita somente quando for fazer testes
+        #self.knowledge.analyze_rules()
 
         self.control_system = ctrl.ControlSystem(rules)
 
@@ -174,6 +174,7 @@ class DelayFuzzySystem:
 
             return {
                 "delay": 50.0,
+                "delay_minutes": self.database.delay_to_minutes(delay_fuzzy),
                 "fallback": True,
                 "activated_rules": []
             }
@@ -189,8 +190,15 @@ class DelayFuzzySystem:
             print("\nSaída da simulação:")
             print(self.simulation.output)
 
+            delay_fuzzy = float(self.simulation.output["delay"])
+
+            delay_minutes = self.database.delay_to_minutes(
+                delay_fuzzy
+            )
+
             return {
-                "delay": self.simulation.output["delay"],
+                "delay": delay_fuzzy,
+                "delay_minutes": delay_minutes,
                 "fallback": False,
                 "activated_rules": activated_rules
             }

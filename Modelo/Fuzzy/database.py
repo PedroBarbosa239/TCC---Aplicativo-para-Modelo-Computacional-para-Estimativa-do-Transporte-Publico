@@ -215,3 +215,23 @@ class Database:
             self.delay.universe,
             [80, 90, 100, 100]
         )
+
+
+    def delay_to_minutes(self, delay_value):
+        """
+        Converte o índice fuzzy de atraso (0–100)
+        para minutos (-4 a +4).
+
+        0   -> -2 min
+        25  -> -1 min
+        50  ->  0 min
+        75  -> +1 min
+        100 -> +2 min
+        """
+
+        delay_minutes = (float(delay_value) - 50.0) * 0.04
+
+        if abs(delay_minutes) < 0.000001:
+            delay_minutes = 0.0
+
+        return delay_minutes

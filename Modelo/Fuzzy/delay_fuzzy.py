@@ -66,7 +66,7 @@ class DelayFuzzySystem:
         self.simulation.input["traffic"] = context["traffic"]
         self.simulation.input["speed"] = context["speed"]
         self.simulation.input["road"] = context["road_flow"]
-
+        
         print("\n==============================")
         print("CONTEXTO")
         print("==============================")
@@ -172,9 +172,15 @@ class DelayFuzzySystem:
                 "Aplicando valor neutro: 50.0"
             )
 
+            delay_fuzzy = 50.0
+
+            delay_minutes = self.database.delay_to_minutes(
+                delay_fuzzy
+            )
+
             return {
-                "delay": 50.0,
-                "delay_minutes": self.database.delay_to_minutes(delay_fuzzy),
+                "delay": delay_fuzzy,
+                "delay_minutes": delay_minutes,
                 "fallback": True,
                 "activated_rules": []
             }

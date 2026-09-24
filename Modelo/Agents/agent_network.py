@@ -7,7 +7,7 @@ class AgentNetwork:
 
         self.agents = {}
         self.travel_time_calculator = TravelTimeCalculator()
-
+        self.segment_distances = {}
 
     # ==========================================
     # ADICIONA UM AGENTE
@@ -117,17 +117,58 @@ class AgentNetwork:
             f")"
         )
 
+ # ==========================================
+    # ARMAZENA DISTÂNCIA REAL DE UM TRECHO
+    # ==========================================
 
+    def set_segment_distance(
+        self,
+        previous_id,
+        next_id,
+        distance_meters,
+        route_id=None
+    ):
+
+        key = (
+            route_id,
+            previous_id,
+            next_id
+        )
+
+        self.segment_distances[key] = float(
+            distance_meters
+        )
+
+
+    # ==========================================
+    # BUSCA DISTÂNCIA REAL DO TRECHO
+    # ==========================================
+
+    def get_segment_distance(
+        self,
+        previous_id,
+        next_id,
+        route_id=None
+    ):
+
+        key = (
+            route_id,
+            previous_id,
+            next_id
+        )
+
+        return self.segment_distances.get(key)
     # ==========================================
     # CALCULA TEMPO ENTRE DOIS AGENTES
     # ==========================================
 
     def calculate_segment_time(
-        self,
-        previous_id,
-        next_id,
-        speed_kmh
-    ):
+    self,
+    previous_id,
+    next_id,
+    speed_kmh,
+    route_id=None
+):
 
         previous_agent = self.get_agent(
             previous_id
@@ -147,12 +188,32 @@ class AgentNetwork:
                 f"Agente não encontrado: {next_id}"
             )
 
-        distance = TravelTimeCalculator.haversine_distance(
-            previous_agent.latitude,
-            previous_agent.longitude,
-            next_agent.latitude,
-            next_agent.longitude
+        # ==========================================
+        # BUSCA DISTÂNCIA REAL DO TRECHO
+        # ==========================================
+
+        distance = self.get_segment_distance(
+            previous_id,
+            next_id,
+            route_id
         )
+
+        # ==========================================
+        # FALLBACK PARA HAVERSINE
+        # ==========================================
+
+        if distance is None:
+
+            distance = TravelTimeCalculator.haversine_distance(
+                previous_agent.latitude,
+                previous_agent.longitude,
+                next_agent.latitude,
+                next_agent.longitude
+            )
+
+        # ==========================================
+        # CALCULA TEMPO
+        # ==========================================
 
         travel_time = TravelTimeCalculator.calculate(
             distance,
@@ -167,7 +228,6 @@ class AgentNetwork:
             "travel_time_seconds": travel_time
         }
 
-
     # ==========================================
     # CALCULA TEMPO TOTAL DA ROTA
     # ==========================================
@@ -175,7 +235,8 @@ class AgentNetwork:
     def calculate_route_time(
         self,
         stop_ids,
-        speed_kmh
+        speed_kmh,
+        route_id=None
     ):
 
         segments = []
@@ -187,7 +248,8 @@ class AgentNetwork:
             segment = self.calculate_segment_time(
                 stop_ids[i],
                 stop_ids[i + 1],
-                speed_kmh
+                speed_kmh,
+                route_id
             )
 
             segments.append(segment)

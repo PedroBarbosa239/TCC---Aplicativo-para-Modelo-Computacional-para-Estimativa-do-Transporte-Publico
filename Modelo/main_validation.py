@@ -214,13 +214,13 @@ else:
 # FRAMEWORK DE VALIDAÇÃO
 # ==========================================================
 
-#print("\n")
-#print("=" * 60)
-#print("INICIANDO VALIDAÇÃO")
-#print("=" * 60)
+print("\n")
+print("=" * 60)
+print("INICIANDO VALIDAÇÃO")
+print("=" * 60)
 
-#validator = FuzzyValidator(fuzzy)
+validator = FuzzyValidator(fuzzy)
 
-#results = validator.run()
+results = validator.run()
 
-#print_report(results)
+print_report(results)

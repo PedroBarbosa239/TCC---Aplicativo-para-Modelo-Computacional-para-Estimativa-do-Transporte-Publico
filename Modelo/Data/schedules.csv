@@ -1,14 +1,2 @@
 route_id,direction,start_time
-101,bairro-transbordo,04:00
-101,bairro-transbordo,04:30
-101,bairro-transbordo,05:00
-101,bairro-transbordo,05:30
-101,bairro-transbordo,06:00
-103,bairro-transbordo,04:15
-103,bairro-transbordo,04:45
-103,bairro-transbordo,05:15
-103,bairro-transbordo,05:45
-204,bairro-transbordo,04:20
-204,bairro-transbordo,05:00
-305,bairro-transbordo,04:10
-305,bairro-transbordo,04:50
+12,transbordo-bairro,17:30

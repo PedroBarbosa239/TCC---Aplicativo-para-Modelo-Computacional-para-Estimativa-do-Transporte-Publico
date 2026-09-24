@@ -1,11 +1,9 @@
 from Agents.agent_message import AgentMessage
 
-from Api.weather_api import get_weather
-from Api.traffic_api import get_traffic
-from Api.road_api import get_road_type
-
 from Normalization.normalize import ContextNormalizer
 from Fuzzy.delay_fuzzy import DelayFuzzySystem
+
+from Services.context_service import ContextService
 
 from datetime import datetime
 import time
@@ -24,6 +22,10 @@ class BusSimulation:
         self.schedule_loader = schedule_loader
 
         self.normalizer = ContextNormalizer()
+        
+        self.context_service = ContextService(
+            self.normalizer
+        )
         self.fuzzy = DelayFuzzySystem()
 
          # Estado atual da viagem
@@ -43,68 +45,11 @@ class BusSimulation:
         previous_confidence=100
     ):
 
-        lat = agent.latitude
-        lon = agent.longitude
-
-        context_raw = {}
-
-        # ------------------------------------------------------
-        # CLIMA
-        # ------------------------------------------------------
-
-        context_raw.update(
-            get_weather(
-                lat,
-                lon
-            )
-        )
-
-        # ------------------------------------------------------
-        # TRÂNSITO
-        # ------------------------------------------------------
-
-        context_raw.update(
-            get_traffic(
-                lat,
-                lon
-            )
-        )
-
-        # ------------------------------------------------------
-        # TIPO DA VIA
-        # ------------------------------------------------------
-
-        context_raw.update(
-            get_road_type(
-                lat,
-                lon
-            )
-        )
-
-        # ------------------------------------------------------
-        # CONTEXTO DA PROPAGAÇÃO
-        # ------------------------------------------------------
-
-        context_raw["previous_delay"] = previous_delay
-
-        context_raw["previous_confidence"] = (
-            previous_confidence
-        )
-
-        # ------------------------------------------------------
-        # NORMALIZAÇÃO
-        # ------------------------------------------------------
-
-        normalized_result = (
-            self.normalizer.normalize(
-                context_raw
-            )
-        )
-
-        return {
-            "raw": normalized_result["raw"],
-            "normalized": normalized_result["normalized"]
-        }
+        return self.context_service.get_context(
+        agent=agent,
+        previous_delay=previous_delay,
+        previous_confidence=previous_confidence
+    )
 
     # ==========================================================
     # EXECUTA FUZZY
@@ -438,10 +383,7 @@ class BusSimulation:
                 "%H:%M:%S"
             )
 
-        total_seconds = (
-            travel_time_seconds
-            + (fuzzy_delay_minutes * 60)
-        )
+        total_seconds = (travel_time_seconds + (fuzzy_delay_minutes * 60))
 
         arrival_time = (
             arrival_time
@@ -803,9 +745,9 @@ class BusSimulation:
                 "dos próximos pontos..."
             )
 
-            future = self.calculate_future(
-                destination_stop=destination_stop
-            )
+            future = self.print_future_prediction(
+    destination_stop=destination_stop
+)
 
             # ------------------------------------------------------
             # MOSTRA NOVA PREVISÃO
@@ -1025,3 +967,87 @@ class BusSimulation:
             ]
 
         return predictions
+    def reset_trip(self):
+        self.current_route = None
+        self.current_stop = None
+        self.current_time = None
+        self.previous_delay = 0.0
+        self.previous_confidence = 100.0
+
+    def confirm_arrival(
+    self,
+    arrived_stop,
+    arrival_time,
+    delay,
+    confidence
+):
+        """
+        Confirma a chegada ao próximo ponto e atualiza
+        o estado interno da simulação.
+        """
+
+        self.current_stop = arrived_stop
+        self.current_time = arrival_time
+
+        self.previous_delay = delay
+        self.previous_confidence = confidence
+
+    def calculate_next_prediction(self, destination_stop):
+        predictions = self.calculate_future(destination_stop)
+
+        if not predictions:
+            return None
+
+        return predictions[0]
+
+    def print_future_prediction(self, destination_stop):
+        future = self.calculate_future(
+            destination_stop=destination_stop
+        )
+
+        print("\n----------------------------------------")
+        print("       PREVISÃO ATUALIZADA DO FUTURO")
+        print("----------------------------------------")
+
+        if not future:
+            print("Nenhum trecho futuro.")
+            return future
+
+        for prediction in future:
+            print(
+                f"{prediction['previous_stop']} → "
+                f"{prediction['current_stop']} | "
+                f"Saída: {prediction['departure_time']} | "
+                f"Chegada: {prediction['arrival_time']} | "
+                f"Fuzzy: "
+                f"{prediction['fuzzy_delay_minutes']:+.2f} min"
+            )
+
+        print("----------------------------------------")
+
+        print(
+            f"Previsão de chegada ao destino "
+            f"{destination_stop}: "
+            f"{future[-1]['arrival_time']}"
+        )
+
+        return future
+
+
+    def calculate_next_prediction(self, destination_stop):
+        predictions = self.calculate_future(
+            destination_stop
+        )
+
+        if not predictions:
+            return None
+
+        return {
+            "next_prediction": predictions[0],
+            "destination_prediction": {
+                "current_stop": predictions[0]["previous_stop"],
+                "destination_stop": destination_stop,
+                "arrival_time": predictions[-1]["arrival_time"]
+            },
+            "future_predictions": predictions
+        }

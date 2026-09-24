@@ -1,60 +1,64 @@
 ID,Grupo,Rain,Traffic,Road,Speed,Delay,Justificativa,Implementada
-A01,A,heavy,high,,,very_late,,TRUE
-A02,A,heavy,,,slow,very_late,,TRUE
-A03,A,moderate,medium,,,late,,TRUE
-A04,A,light,low,,,on_time,,TRUE
-A05,A,none,low,,fast,early,,TRUE
-A06,A,none,very_low,,very_fast,very_early,,TRUE
-B01,B,,very_high,,,very_late,,TRUE
-B02,B,,high,,slow,late,,TRUE
-B03,B,,medium,average,normal,on_time,,TRUE
-B04,B,,low,good,fast,early,,TRUE
-B05,B,,very_low,excellent,very_fast,very_early,,TRUE
-B06,B,,medium,poor,normal,late,,TRUE
-B07,B,,low,excellent,fast,early,,TRUE
-B08,B,,very_high,very_poor,slow,very_late,,TRUE
-C01,C,,,excellent,very_fast,very_early,,TRUE
-C02,C,,low,good,fast,early,,TRUE
-C03,C,,medium,average,normal,on_time,,TRUE
-C04,C,,medium,poor,slow,late,,TRUE
-C05,C,,high,very_poor,very_slow,very_late,,TRUE
-C06,C,light,low,excellent,normal,on_time,,TRUE
-C07,C,heavy,high,very_poor,slow,very_late,,TRUE
-D01,D,,very_low,excellent,very_fast,very_early,,TRUE
-D02,D,,low,good,fast,early,,TRUE
-D03,D,,low,average,normal,on_time,,TRUE
-D04,D,light,low,good,fast,on_time,,TRUE
-D05,D,light,very_low,excellent,very_fast,early,,TRUE
-E01,E,moderate,medium,average,normal,late,,TRUE
-E02,E,light,medium,good,normal,on_time,,TRUE
-E03,E,moderate,low,average,normal,on_time,,TRUE
-E04,E,,medium,average,normal,on_time,,TRUE
-E05,E,light,medium,poor,slow,late,,TRUE
-F01,F,heavy,high,poor,slow,very_late,,TRUE
-F02,F,heavy,very_high,very_poor,very_slow,very_late,,TRUE
-F03,F,moderate,high,poor,slow,late,,TRUE
-F04,F,heavy,medium,average,slow,late,,TRUE
-F05,F,heavy,high,average,normal,late,,TRUE
-G01,G,,very_high,excellent,very_slow,late,,TRUE
-G02,G,heavy,very_low,excellent,fast,late,,TRUE
-G03,G,,very_high,poor,very_slow,very_late,,TRUE
-G04,G,moderate,very_high,average,slow,very_late,,TRUE
-G05,G,light,high,excellent,fast,on_time,,TRUE
-H01,H,,very_low,average,normal,on_time,,TRUE
-H02,H,,low,average,normal,on_time,,TRUE
-H03,H,,medium,average,normal,late,,TRUE
-H04,H,,high,average,slow,late,,TRUE
-H05,H,,very_high,average,very_slow,very_late,,TRUE
-H06,H,light,low,average,normal,on_time,,TRUE
-H07,H,moderate,medium,average,slow,late,,TRUE
-H08,H,heavy,high,average,slow,very_late,,TRUE
-I01,I,heavy,very_low,excellent,very_fast,on_time,,TRUE
-I02,I,,high,excellent,very_fast,early,,TRUE
-I03,I,light,medium,excellent,fast,on_time,,TRUE
-I04,I,moderate,low,good,fast,early,,TRUE
-I05,I,,medium,excellent,very_fast,early,,TRUE
-J01,J,,very_high,excellent,fast,late,,TRUE
-J02,J,,low,very_poor,normal,late,,TRUE
-J03,J,light,low,very_poor,slow,late,,TRUE
-J04,J,heavy,very_low,excellent,normal,late,,TRUE
-J05,J,,medium,poor,very_slow,late,,TRUE
+A01,A,heavy,high,,,very_late,"Chuva intensa combinada com trânsito alto caracteriza forte atraso.",TRUE
+A02,A,heavy,,,slow,very_late,"Chuva intensa e velocidade baixa indicam atraso muito elevado.",TRUE
+A03,A,moderate,medium,,,late,"Chuva moderada e trânsito médio tendem a provocar atraso.",TRUE
+A04,A,light,low,,,on_time,"Chuva leve e trânsito baixo mantêm a operação próxima do horário.",TRUE
+A05,A,none,low,,fast,early,"Sem chuva, trânsito baixo e velocidade alta favorecem antecipação.",TRUE
+A06,A,none,very_low,,very_fast,very_early,"Condições muito favoráveis favorecem forte antecipação.",TRUE
+
+B01,B,,very_high,,,very_late,"Trânsito muito alto tende a produzir atraso muito elevado.",TRUE
+B02,B,,high,,slow,late,"Trânsito alto combinado com baixa velocidade provoca atraso.",TRUE
+B03,B,,medium,average,normal,on_time,"Trânsito médio, via média e velocidade normal representam operação regular.",TRUE
+B04,B,,low,good,fast,early,"Trânsito baixo, via boa e velocidade alta favorecem antecipação.",TRUE
+B06,B,,medium,poor,normal,late,"Trânsito médio em via ruim reduz o desempenho.",TRUE
+B08,B,,very_high,very_poor,slow,very_late,"Trânsito muito alto, via muito ruim e baixa velocidade caracterizam forte atraso.",TRUE
+
+C01,C,,,excellent,very_fast,very_early,"Via excelente e velocidade muito alta favorecem forte antecipação.",TRUE
+C04,C,,medium,poor,slow,late,"Trânsito médio, via ruim e baixa velocidade indicam atraso.",TRUE
+C05,C,,high,very_poor,very_slow,very_late,"Combinação severamente desfavorável.",TRUE
+C06,C,light,low,excellent,normal,on_time,"Chuva leve, trânsito baixo e via excelente mantêm operação próxima do horário.",TRUE
+C07,C,heavy,high,very_poor,slow,very_late,"Condições severamente desfavoráveis.",TRUE
+
+E01,E,moderate,medium,average,normal,late,"Chuva moderada adiciona atraso às condições médias de tráfego, via e velocidade.",TRUE
+E02,E,light,medium,good,normal,on_time,"Chuva leve, trânsito médio, via boa e velocidade normal mantêm operação próxima do horário.",TRUE
+E03,E,moderate,low,average,normal,on_time,"Chuva moderada com trânsito baixo e velocidade normal pode manter operação próxima do horário.",TRUE
+E05,E,light,medium,poor,slow,late,"Chuva leve combinada com trânsito médio, via ruim e baixa velocidade provoca atraso.",TRUE
+
+F01,F,heavy,high,poor,slow,very_late,"Chuva intensa, trânsito alto, via ruim e baixa velocidade provocam forte atraso.",TRUE
+F02,F,heavy,very_high,very_poor,very_slow,very_late,"Condições máximas de adversidade.",TRUE
+F03,F,moderate,high,poor,slow,late,"Chuva moderada, trânsito alto, via ruim e baixa velocidade provocam atraso.",TRUE
+F04,F,heavy,medium,average,slow,late,"Chuva intensa e baixa velocidade produzem atraso mesmo com condições médias de tráfego e via.",TRUE
+F05,F,heavy,high,average,normal,late,"Chuva intensa e trânsito alto provocam atraso mesmo com velocidade normal.",TRUE
+
+G01,G,,very_high,excellent,very_slow,late,"Trânsito muito alto reduz o desempenho mesmo em via excelente.",TRUE
+G02,G,heavy,very_low,excellent,fast,late,"Chuva intensa pode provocar atraso mesmo com trânsito baixo e via excelente.",TRUE
+G03,G,,very_high,poor,very_slow,very_late,"Trânsito muito alto, via ruim e velocidade muito baixa provocam forte atraso.",TRUE
+G04,G,moderate,very_high,average,slow,very_late,"Chuva moderada, trânsito muito alto e baixa velocidade caracterizam forte atraso.",TRUE
+G05,G,light,high,excellent,fast,on_time,"Via excelente e velocidade alta podem compensar parcialmente trânsito alto e chuva leve.",TRUE
+
+H01,H,,very_low,average,normal,on_time,"Trânsito muito baixo, via média e velocidade normal representam operação regular.",TRUE
+H03,H,,medium,average,normal,on_time,"Corrigida: mesma combinação de B03/C03/E04; mantém consequente consistente.",TRUE
+H04,H,,high,average,slow,late,"Trânsito alto e baixa velocidade provocam atraso.",TRUE
+H05,H,,very_high,average,very_slow,very_late,"Trânsito muito alto e velocidade muito baixa provocam forte atraso.",TRUE
+H07,H,moderate,medium,average,slow,late,"Chuva moderada, trânsito médio e baixa velocidade provocam atraso.",TRUE
+H08,H,heavy,high,average,slow,very_late,"Chuva intensa, trânsito alto e baixa velocidade provocam forte atraso.",TRUE
+
+I01,I,heavy,very_low,excellent,very_fast,on_time,"Chuva intensa gera impacto negativo mesmo com trânsito baixo e via excelente.",TRUE
+I02,I,,high,excellent,very_fast,early,"Velocidade muito alta e via excelente podem compensar trânsito alto.",TRUE
+I03,I,light,medium,excellent,fast,on_time,"Via excelente e velocidade alta compensam parcialmente chuva leve e trânsito médio.",TRUE
+I04,I,moderate,low,good,fast,early,"Velocidade alta e trânsito baixo compensam parcialmente chuva moderada.",TRUE
+I05,I,,medium,excellent,very_fast,early,"Via excelente e velocidade muito alta favorecem antecipação.",TRUE
+
+J01,J,,very_high,excellent,fast,late,"Trânsito muito alto continua sendo fator de atraso apesar de via excelente e velocidade alta.",TRUE
+J02,J,,low,very_poor,normal,late,"Via muito ruim provoca atraso mesmo com trânsito baixo.",TRUE
+J03,J,light,low,very_poor,slow,late,"Via muito ruim e baixa velocidade provocam atraso.",TRUE
+J04,J,heavy,very_low,excellent,normal,late,"Chuva intensa provoca atraso mesmo com trânsito muito baixo e via excelente.",TRUE
+J05,J,,medium,poor,very_slow,late,"Via ruim e velocidade muito baixa provocam atraso.",TRUE
+
+K01,K,none,very_low,good,normal,on_time,"Novo: cobre o contexto operacional real observado na aplicação.",TRUE
+K02,K,none,low,good,normal,on_time,"Novo: trânsito baixo, via boa e velocidade normal representam operação próxima do horário.",TRUE
+K03,K,none,very_low,good,fast,early,"Novo: condições secas, trânsito muito baixo, via boa e velocidade alta favorecem antecipação.",TRUE
+K04,K,none,low,good,fast,early,"Novo: condições secas, trânsito baixo, via boa e velocidade alta favorecem antecipação.",TRUE
+K05,K,light,very_low,good,normal,on_time,"Novo: chuva leve com trânsito muito baixo, via boa e velocidade normal tende a manter operação regular.",TRUE
+K06,K,light,low,good,normal,on_time,"Novo: chuva leve com trânsito baixo, via boa e velocidade normal tende a manter operação regular.",TRUE
+K07,K,none,very_low,average,normal,on_time,"Novo: trânsito muito baixo, via média e velocidade normal representam operação regular.",TRUE

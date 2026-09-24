@@ -30,7 +30,8 @@ class StopLoader:
                     "stop_id": row["stop_id"],
                     "latitude": float(row["latitude"]),
                     "longitude": float(row["longitude"]),
-                    "lines": row["lines"].split("|")
+                    "lines": row["lines"].split("|"),
+                    "road_type": row["road_type"].strip()
                 }
 
                 self.stops.append(stop)
@@ -72,7 +73,8 @@ class StopLoader:
                 stop_id=stop["stop_id"],
                 latitude=stop["latitude"],
                 longitude=stop["longitude"],
-                lines=stop["lines"]
+                lines=stop["lines"],
+                road_type=stop["road_type"]
             )
 
             agents.append(agent)

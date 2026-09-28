@@ -7,6 +7,7 @@ from Services.context_service import ContextService
 
 from datetime import datetime
 import time
+import copy
 
 class BusSimulation:
 
@@ -14,7 +15,8 @@ class BusSimulation:
         self,
         network,
         route_loader,
-        schedule_loader
+        schedule_loader,
+        fuzzy=None
     ):
 
         self.network = network
@@ -26,7 +28,7 @@ class BusSimulation:
         self.context_service = ContextService(
             self.normalizer
         )
-        self.fuzzy = DelayFuzzySystem()
+        self.fuzzy = fuzzy if fuzzy is not None else DelayFuzzySystem()
 
          # Estado atual da viagem
         self.current_route = None
@@ -821,6 +823,11 @@ class BusSimulation:
             self.current_route
         )
 
+        if not route:
+            raise ValueError(
+                f"Rota {self.current_route} não encontrada."
+            )
+
         stop_ids = [
             stop["stop_id"]
             for stop in route
@@ -837,6 +844,13 @@ class BusSimulation:
         if destination_index <= current_index:
             return []
 
+        # ==========================================================
+        # ESTADO LOCAL DA PREVISÃO
+        #
+        # IMPORTANTE:
+        # Nada daqui deve alterar o estado real da viagem.
+        # ==========================================================
+
         current_stop_id = self.current_stop
         current_time = self.current_time
 
@@ -844,6 +858,10 @@ class BusSimulation:
         previous_confidence = self.previous_confidence
 
         predictions = []
+
+        # ==========================================================
+        # CALCULA CADA TRECHO FUTURO
+        # ==========================================================
 
         for index in range(
             current_index,
@@ -871,9 +889,9 @@ class BusSimulation:
                     f"Agente {next_stop_id} não encontrado."
                 )
 
-            # ==================================================
-            # NOVO CONTEXTO
-            # ==================================================
+            # ======================================================
+            # CONTEXTO
+            # ======================================================
 
             context = self.get_context(
                 next_agent,
@@ -881,17 +899,17 @@ class BusSimulation:
                 previous_confidence
             )
 
-            # ==================================================
-            # NOVO FUZZY
-            # ==================================================
+            # ======================================================
+            # FUZZY
+            # ======================================================
 
             fuzzy_result = self.calculate_fuzzy(
                 context
             )
 
-            # ==================================================
-            # TEMPO DO TRECHO
-            # ==================================================
+            # ======================================================
+            # MENSAGEM
+            # ======================================================
 
             message = AgentMessage(
                 source_agent=current_agent.stop_id,
@@ -902,16 +920,30 @@ class BusSimulation:
                 confidence=previous_confidence
             )
 
-            next_agent.receive_message(message)
+            # ======================================================
+            # IMPORTANTE:
+            #
+            # NÃO usamos o agente real para processar a previsão.
+            #
+            # Criamos uma cópia isolada.
+            # ======================================================
 
-            result_agent = next_agent.process_trip(
+            prediction_agent = copy.deepcopy(
+                next_agent
+            )
+
+            prediction_agent.receive_message(
+                message
+            )
+
+            result_agent = prediction_agent.process_trip(
                 message,
                 context
             )
 
-            # ==================================================
-            # NOVA PREVISÃO DE CHEGADA
-            # ==================================================
+            # ======================================================
+            # PREVISÃO DE CHEGADA
+            # ======================================================
 
             arrival_time = self.calculate_arrival_with_delay(
                 arrival_time=current_time,
@@ -923,48 +955,85 @@ class BusSimulation:
                 ]
             )
 
+            # ======================================================
+            # SALVA PREVISÃO
+            # ======================================================
+
             predictions.append({
-                "previous_stop": current_agent.stop_id,
-                "current_stop": next_agent.stop_id,
-                "departure_time": current_time,
-                "arrival_time": arrival_time,
-                "distance_meters": result_agent[
-                    "distance_meters"
-                ],
-                "speed_kmh": result_agent[
-                    "speed_kmh"
-                ],
-                "travel_time_seconds": result_agent[
-                    "travel_time_seconds"
-                ],
-                "fuzzy_delay": fuzzy_result[
-                    "delay"
-                ],
-                "fuzzy_delay_minutes": fuzzy_result[
-                    "delay_minutes"
-                ],
-                "fuzzy_fallback": fuzzy_result[
-                    "fallback"
-                ],
-                "confidence": result_agent[
-                    "confidence"
-                ]
+
+                "previous_stop":
+                    current_agent.stop_id,
+
+                "current_stop":
+                    next_agent.stop_id,
+
+                "departure_time":
+                    current_time,
+
+                "arrival_time":
+                    arrival_time,
+
+                "distance_meters":
+                    result_agent[
+                        "distance_meters"
+                    ],
+
+                "speed_kmh":
+                    result_agent[
+                        "speed_kmh"
+                    ],
+
+                "travel_time_seconds":
+                    result_agent[
+                        "travel_time_seconds"
+                    ],
+
+                "fuzzy_delay":
+                    fuzzy_result[
+                        "delay"
+                    ],
+
+                "fuzzy_delay_minutes":
+                    fuzzy_result[
+                        "delay_minutes"
+                    ],
+
+                "fuzzy_fallback":
+                    fuzzy_result[
+                        "fallback"
+                    ],
+
+                "confidence":
+                    result_agent[
+                        "confidence"
+                    ]
             })
 
-            # ==================================================
-            # PRÓXIMO TRECHO
-            # ==================================================
+            # ======================================================
+            # AVANÇA SOMENTE A PREVISÃO
+            #
+            # NÃO altera:
+            # self.current_stop
+            # self.current_time
+            # self.previous_delay
+            # self.previous_confidence
+            # ======================================================
 
             current_time = arrival_time
+
             current_stop_id = next_agent.stop_id
 
-            previous_delay = fuzzy_result[
-                "delay_minutes"
-            ]
+            previous_delay = (
+                fuzzy_result[
+                    "delay_minutes"
+                ]
+            )
 
-            previous_confidence = result_agent[
-                "confidence"
-            ]
+            previous_confidence = (
+                result_agent[
+                    "confidence"
+                ]
+            )
 
         return predictions
     def reset_trip(self):
@@ -992,13 +1061,7 @@ class BusSimulation:
         self.previous_delay = delay
         self.previous_confidence = confidence
 
-    def calculate_next_prediction(self, destination_stop):
-        predictions = self.calculate_future(destination_stop)
-
-        if not predictions:
-            return None
-
-        return predictions[0]
+    
 
     def print_future_prediction(self, destination_stop):
         future = self.calculate_future(
@@ -1034,20 +1097,177 @@ class BusSimulation:
         return future
 
 
-    def calculate_next_prediction(self, destination_stop):
-        predictions = self.calculate_future(
+    def calculate_next_prediction(
+    self,
+    destination_stop,
+    current_time=None
+):
+
+        if current_time is not None:
+            prediction_time = current_time
+        else:
+            prediction_time = self.current_time
+        route = self.route_loader.get_route(self.current_route)
+
+        if not route:
+            raise ValueError(
+                f"Rota não encontrada: {self.current_route}"
+            )
+
+        stop_ids = [
+            stop["stop_id"]
+            for stop in route
+        ]
+
+        if self.current_stop not in stop_ids:
+            raise ValueError(
+                f"Ponto atual não encontrado na rota: "
+                f"{self.current_stop}"
+            )
+
+        current_index = stop_ids.index(
+            self.current_stop
+        )
+
+        destination_index = stop_ids.index(
             destination_stop
         )
 
-        if not predictions:
+        # Já chegou ou passou do destino.
+        if current_index >= destination_index:
             return None
 
+        current_stop_id = stop_ids[current_index]
+        next_stop_id = stop_ids[current_index + 1]
+
+        current_agent = self.network.get_agent(
+            current_stop_id
+        )
+
+        next_agent = self.network.get_agent(
+            next_stop_id
+        )
+
+        if current_agent is None:
+            raise ValueError(
+                f"Agente não encontrado: {current_stop_id}"
+            )
+
+        if next_agent is None:
+            raise ValueError(
+                f"Agente não encontrado: {next_stop_id}"
+            )
+
+        # ------------------------------------------------------
+        # Contexto do próximo agente
+        # ------------------------------------------------------
+
+        context = self.get_context(
+            next_agent,
+            self.previous_delay,
+            self.previous_confidence
+        )
+
+        # ------------------------------------------------------
+        # Fuzzy
+        # ------------------------------------------------------
+
+        fuzzy_result = self.calculate_fuzzy(
+            context
+        )
+
+        # ------------------------------------------------------
+        # Mensagem para previsão
+        # ------------------------------------------------------
+
+        message = AgentMessage(
+            source_agent=current_agent.stop_id,
+            route_id=self.current_route,
+            departure_time=prediction_time,
+            arrival_time=prediction_time,
+            estimated_delay=self.previous_delay,
+            confidence=self.previous_confidence
+        )
+
+        # ------------------------------------------------------
+        # IMPORTANTE:
+        # A previsão não pode alterar o agente real.
+        # ------------------------------------------------------
+
+        prediction_agent = copy.deepcopy(
+            next_agent
+        )
+
+        prediction_agent.receive_message(
+            message
+        )
+
+        result_agent = prediction_agent.process_trip(
+            message,
+            context
+        )
+
+        # ------------------------------------------------------
+        # Calcula chegada prevista
+        # ------------------------------------------------------
+
+        arrival_time = self.calculate_arrival_with_delay(
+    arrival_time=prediction_time,
+            travel_time_seconds=result_agent[
+                "travel_time_seconds"
+            ],
+            fuzzy_delay_minutes=fuzzy_result[
+                "delay_minutes"
+            ]
+        )
+
+        prediction = {
+            "previous_stop": current_agent.stop_id,
+            "current_stop": next_agent.stop_id,
+            "next_stop": next_agent.stop_id,
+
+            "departure_time": prediction_time,
+            "arrival_time": arrival_time,
+
+            "distance_meters": result_agent[
+                "distance_meters"
+            ],
+
+            "speed_kmh": result_agent[
+                "speed_kmh"
+            ],
+
+            "travel_time_seconds": result_agent[
+                "travel_time_seconds"
+            ],
+
+            "fuzzy_delay": fuzzy_result[
+                "delay"
+            ],
+
+            "fuzzy_delay_minutes": fuzzy_result[
+                "delay_minutes"
+            ],
+
+            "fuzzy_fallback": fuzzy_result[
+                "fallback"
+            ],
+
+            "confidence": result_agent[
+                "confidence"
+            ]
+        }
+
         return {
-            "next_prediction": predictions[0],
+            "next_prediction": prediction,
+
             "destination_prediction": {
-                "current_stop": predictions[0]["previous_stop"],
+                "current_stop": current_agent.stop_id,
                 "destination_stop": destination_stop,
-                "arrival_time": predictions[-1]["arrival_time"]
+                "arrival_time": arrival_time
             },
-            "future_predictions": predictions
+
+            "future_predictions": [
+                prediction
+            ]
         }

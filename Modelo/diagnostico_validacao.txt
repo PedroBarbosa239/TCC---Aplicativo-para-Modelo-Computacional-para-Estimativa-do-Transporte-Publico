@@ -1,0 +1,2009 @@
+======================================================================
+DIAGNÓSTICO COMPLETO DA VALIDAÇÃO FUZZY
+======================================================================
+
+
+======================================================================
+ANÁLISE DA BASE DE REGRAS
+======================================================================
+
+Total de regras analisadas: 54
+
+----------------------------------------------------------------------
+1. CONFLITOS EXATOS
+----------------------------------------------------------------------
+Nenhum conflito exato encontrado.
+
+----------------------------------------------------------------------
+2. REGRAS DUPLICADAS
+----------------------------------------------------------------------
+
+Regras: B03, H03
+Condições:
+  Road = average
+  Speed = normal
+  Traffic = medium
+Consequente: on_time
+
+----------------------------------------------------------------------
+3. SOBREPOSIÇÕES
+----------------------------------------------------------------------
+
+B01 (very_late)  ⊃  B08 (very_late)
+  Regra geral:
+    Traffic = very_high
+  Regra específica:
+    Traffic = very_high
+    Road = very_poor
+    Speed = slow
+
+A04 (on_time)  ⊃  C06 (on_time)
+  Regra geral:
+    Rain = light
+    Traffic = low
+  Regra específica:
+    Rain = light
+    Traffic = low
+    Road = excellent
+    Speed = normal
+
+A01 (very_late)  ⊃  C07 (very_late)
+  Regra geral:
+    Rain = heavy
+    Traffic = high
+  Regra específica:
+    Rain = heavy
+    Traffic = high
+    Road = very_poor
+    Speed = slow
+
+A02 (very_late)  ⊃  C07 (very_late)
+  Regra geral:
+    Rain = heavy
+    Speed = slow
+  Regra específica:
+    Rain = heavy
+    Traffic = high
+    Road = very_poor
+    Speed = slow
+
+B02 (late)  ⊃  C07 (very_late)
+  Regra geral:
+    Traffic = high
+    Speed = slow
+  Regra específica:
+    Rain = heavy
+    Traffic = high
+    Road = very_poor
+    Speed = slow
+
+A03 (late)  ⊃  E01 (late)
+  Regra geral:
+    Rain = moderate
+    Traffic = medium
+  Regra específica:
+    Rain = moderate
+    Traffic = medium
+    Road = average
+    Speed = normal
+
+B03 (on_time)  ⊃  E01 (late)
+  Regra geral:
+    Traffic = medium
+    Road = average
+    Speed = normal
+  Regra específica:
+    Rain = moderate
+    Traffic = medium
+    Road = average
+    Speed = normal
+
+H03 (on_time)  ⊃  E01 (late)
+  Regra geral:
+    Traffic = medium
+    Road = average
+    Speed = normal
+  Regra específica:
+    Rain = moderate
+    Traffic = medium
+    Road = average
+    Speed = normal
+
+C04 (late)  ⊃  E05 (late)
+  Regra geral:
+    Traffic = medium
+    Road = poor
+    Speed = slow
+  Regra específica:
+    Rain = light
+    Traffic = medium
+    Road = poor
+    Speed = slow
+
+A01 (very_late)  ⊃  F01 (very_late)
+  Regra geral:
+    Rain = heavy
+    Traffic = high
+  Regra específica:
+    Rain = heavy
+    Traffic = high
+    Road = poor
+    Speed = slow
+
+A02 (very_late)  ⊃  F01 (very_late)
+  Regra geral:
+    Rain = heavy
+    Speed = slow
+  Regra específica:
+    Rain = heavy
+    Traffic = high
+    Road = poor
+    Speed = slow
+
+B02 (late)  ⊃  F01 (very_late)
+  Regra geral:
+    Traffic = high
+    Speed = slow
+  Regra específica:
+    Rain = heavy
+    Traffic = high
+    Road = poor
+    Speed = slow
+
+B01 (very_late)  ⊃  F02 (very_late)
+  Regra geral:
+    Traffic = very_high
+  Regra específica:
+    Rain = heavy
+    Traffic = very_high
+    Road = very_poor
+    Speed = very_slow
+
+B02 (late)  ⊃  F03 (late)
+  Regra geral:
+    Traffic = high
+    Speed = slow
+  Regra específica:
+    Rain = moderate
+    Traffic = high
+    Road = poor
+    Speed = slow
+
+A02 (very_late)  ⊃  F04 (late)
+  Regra geral:
+    Rain = heavy
+    Speed = slow
+  Regra específica:
+    Rain = heavy
+    Traffic = medium
+    Road = average
+    Speed = slow
+
+A01 (very_late)  ⊃  F05 (late)
+  Regra geral:
+    Rain = heavy
+    Traffic = high
+  Regra específica:
+    Rain = heavy
+    Traffic = high
+    Road = average
+    Speed = normal
+
+B01 (very_late)  ⊃  G01 (late)
+  Regra geral:
+    Traffic = very_high
+  Regra específica:
+    Traffic = very_high
+    Road = excellent
+    Speed = very_slow
+
+B01 (very_late)  ⊃  G03 (very_late)
+  Regra geral:
+    Traffic = very_high
+  Regra específica:
+    Traffic = very_high
+    Road = poor
+    Speed = very_slow
+
+B01 (very_late)  ⊃  G04 (very_late)
+  Regra geral:
+    Traffic = very_high
+  Regra específica:
+    Rain = moderate
+    Traffic = very_high
+    Road = average
+    Speed = slow
+
+B02 (late)  ⊃  H04 (late)
+  Regra geral:
+    Traffic = high
+    Speed = slow
+  Regra específica:
+    Traffic = high
+    Road = average
+    Speed = slow
+
+B01 (very_late)  ⊃  H05 (very_late)
+  Regra geral:
+    Traffic = very_high
+  Regra específica:
+    Traffic = very_high
+    Road = average
+    Speed = very_slow
+
+A03 (late)  ⊃  H07 (late)
+  Regra geral:
+    Rain = moderate
+    Traffic = medium
+  Regra específica:
+    Rain = moderate
+    Traffic = medium
+    Road = average
+    Speed = slow
+
+A01 (very_late)  ⊃  H08 (very_late)
+  Regra geral:
+    Rain = heavy
+    Traffic = high
+  Regra específica:
+    Rain = heavy
+    Traffic = high
+    Road = average
+    Speed = slow
+
+A02 (very_late)  ⊃  H08 (very_late)
+  Regra geral:
+    Rain = heavy
+    Speed = slow
+  Regra específica:
+    Rain = heavy
+    Traffic = high
+    Road = average
+    Speed = slow
+
+B02 (late)  ⊃  H08 (very_late)
+  Regra geral:
+    Traffic = high
+    Speed = slow
+  Regra específica:
+    Rain = heavy
+    Traffic = high
+    Road = average
+    Speed = slow
+
+H04 (late)  ⊃  H08 (very_late)
+  Regra geral:
+    Traffic = high
+    Road = average
+    Speed = slow
+  Regra específica:
+    Rain = heavy
+    Traffic = high
+    Road = average
+    Speed = slow
+
+C01 (very_early)  ⊃  I01 (on_time)
+  Regra geral:
+    Road = excellent
+    Speed = very_fast
+  Regra específica:
+    Rain = heavy
+    Traffic = very_low
+    Road = excellent
+    Speed = very_fast
+
+C01 (very_early)  ⊃  I02 (early)
+  Regra geral:
+    Road = excellent
+    Speed = very_fast
+  Regra específica:
+    Traffic = high
+    Road = excellent
+    Speed = very_fast
+
+B04 (early)  ⊃  I04 (early)
+  Regra geral:
+    Traffic = low
+    Road = good
+    Speed = fast
+  Regra específica:
+    Rain = moderate
+    Traffic = low
+    Road = good
+    Speed = fast
+
+C01 (very_early)  ⊃  I05 (early)
+  Regra geral:
+    Road = excellent
+    Speed = very_fast
+  Regra específica:
+    Traffic = medium
+    Road = excellent
+    Speed = very_fast
+
+B01 (very_late)  ⊃  J01 (late)
+  Regra geral:
+    Traffic = very_high
+  Regra específica:
+    Traffic = very_high
+    Road = excellent
+    Speed = fast
+
+A04 (on_time)  ⊃  J03 (late)
+  Regra geral:
+    Rain = light
+    Traffic = low
+  Regra específica:
+    Rain = light
+    Traffic = low
+    Road = very_poor
+    Speed = slow
+
+A05 (early)  ⊃  K04 (early)
+  Regra geral:
+    Rain = none
+    Traffic = low
+    Speed = fast
+  Regra específica:
+    Rain = none
+    Traffic = low
+    Road = good
+    Speed = fast
+
+B04 (early)  ⊃  K04 (early)
+  Regra geral:
+    Traffic = low
+    Road = good
+    Speed = fast
+  Regra específica:
+    Rain = none
+    Traffic = low
+    Road = good
+    Speed = fast
+
+A04 (on_time)  ⊃  K06 (on_time)
+  Regra geral:
+    Rain = light
+    Traffic = low
+  Regra específica:
+    Rain = light
+    Traffic = low
+    Road = good
+    Speed = normal
+
+H01 (on_time)  ⊃  K07 (on_time)
+  Regra geral:
+    Traffic = very_low
+    Road = average
+    Speed = normal
+  Regra específica:
+    Rain = none
+    Traffic = very_low
+    Road = average
+    Speed = normal
+
+
+
+======================================================================
+TESTE T_A01
+======================================================================
+Descrição : Teste representativo da regra A01
+Esperado  : very_late
+Obtido    : very_late
+Delay     : 83.54
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 93.0
+  traffic            = 75.0
+  road_flow          = 50.0
+  speed              = 50.0
+
+Regras ativadas:
+  A01    -> very_late    μ=1.000
+     Condições:
+       Rain       -> heavy        μ=1.000
+       Traffic    -> high         μ=1.000
+  F05    -> late         μ=1.000
+     Condições:
+       Rain       -> heavy        μ=1.000
+       Traffic    -> high         μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> normal       μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_A02
+======================================================================
+Descrição : Teste representativo da regra A02
+Esperado  : very_late
+Obtido    : very_late
+Delay     : 83.54
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 93.0
+  speed              = 75.0
+  traffic            = 50.0
+  road_flow          = 50.0
+
+Regras ativadas:
+  A02    -> very_late    μ=1.000
+     Condições:
+       Rain       -> heavy        μ=1.000
+       Speed      -> slow         μ=1.000
+  F04    -> late         μ=1.000
+     Condições:
+       Rain       -> heavy        μ=1.000
+       Traffic    -> medium       μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> slow         μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_A03
+======================================================================
+Descrição : Teste representativo da regra A03
+Esperado  : late
+Obtido    : late
+Delay     : 62.50
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 60.0
+  traffic            = 50.0
+  road_flow          = 50.0
+  speed              = 50.0
+
+Regras ativadas:
+  A03    -> late         μ=1.000
+     Condições:
+       Rain       -> moderate     μ=1.000
+       Traffic    -> medium       μ=1.000
+  B03    -> on_time      μ=1.000
+     Condições:
+       Traffic    -> medium       μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> normal       μ=1.000
+  E01    -> late         μ=1.000
+     Condições:
+       Rain       -> moderate     μ=1.000
+       Traffic    -> medium       μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> normal       μ=1.000
+  H03    -> on_time      μ=1.000
+     Condições:
+       Traffic    -> medium       μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> normal       μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_A04
+======================================================================
+Descrição : Teste representativo da regra A04
+Esperado  : on_time
+Obtido    : on_time
+Delay     : 50.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 30.0
+  traffic            = 25.0
+  road_flow          = 50.0
+  speed              = 50.0
+
+Regras ativadas:
+  A04    -> on_time      μ=1.000
+     Condições:
+       Rain       -> light        μ=1.000
+       Traffic    -> low          μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_A05
+======================================================================
+Descrição : Teste representativo da regra A05
+Esperado  : early
+Obtido    : early
+Delay     : 25.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 5.0
+  traffic            = 25.0
+  speed              = 25.0
+  road_flow          = 50.0
+
+Regras ativadas:
+  A05    -> early        μ=1.000
+     Condições:
+       Rain       -> none         μ=1.000
+       Traffic    -> low          μ=1.000
+       Speed      -> fast         μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_A06
+======================================================================
+Descrição : Teste representativo da regra A06
+Esperado  : very_early
+Obtido    : very_early
+Delay     : 7.78
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 5.0
+  traffic            = 5.0
+  speed              = 5.0
+  road_flow          = 50.0
+
+Regras ativadas:
+  A06    -> very_early   μ=1.000
+     Condições:
+       Rain       -> none         μ=1.000
+       Traffic    -> very_low     μ=1.000
+       Speed      -> very_fast    μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_B01
+======================================================================
+Descrição : Teste representativo da regra B01
+Esperado  : very_late
+Obtido    : very_late
+Delay     : 92.22
+Origem    : FUZZY
+
+Contexto utilizado:
+  traffic            = 95.0
+  rain               = 50.0
+  road_flow          = 50.0
+  speed              = 50.0
+
+Regras ativadas:
+  B01    -> very_late    μ=1.000
+     Condições:
+       Traffic    -> very_high    μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_B02
+======================================================================
+Descrição : Teste representativo da regra B02
+Esperado  : late
+Obtido    : late
+Delay     : 75.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  traffic            = 75.0
+  speed              = 75.0
+  rain               = 50.0
+  road_flow          = 50.0
+
+Regras ativadas:
+  B02    -> late         μ=1.000
+     Condições:
+       Traffic    -> high         μ=1.000
+       Speed      -> slow         μ=1.000
+  H04    -> late         μ=1.000
+     Condições:
+       Traffic    -> high         μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> slow         μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_B03
+======================================================================
+Descrição : Teste representativo da regra B03
+Esperado  : on_time
+Obtido    : late
+Delay     : 60.69
+Origem    : FUZZY
+
+Contexto utilizado:
+  traffic            = 50.0
+  road_flow          = 50.0
+  speed              = 50.0
+  rain               = 50.0
+
+Regras ativadas:
+  B03    -> on_time      μ=1.000
+     Condições:
+       Traffic    -> medium       μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> normal       μ=1.000
+  H03    -> on_time      μ=1.000
+     Condições:
+       Traffic    -> medium       μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> normal       μ=1.000
+  A03    -> late         μ=0.500
+     Condições:
+       Rain       -> moderate     μ=0.500
+       Traffic    -> medium       μ=1.000
+  E01    -> late         μ=0.500
+     Condições:
+       Rain       -> moderate     μ=0.500
+       Traffic    -> medium       μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> normal       μ=1.000
+
+STATUS: FAIL
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_B04
+======================================================================
+Descrição : Teste representativo da regra B04
+Esperado  : early
+Obtido    : early
+Delay     : 25.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  traffic            = 25.0
+  road_flow          = 25.0
+  speed              = 25.0
+  rain               = 50.0
+
+Regras ativadas:
+  B04    -> early        μ=1.000
+     Condições:
+       Traffic    -> low          μ=1.000
+       Road       -> good         μ=1.000
+       Speed      -> fast         μ=1.000
+  I04    -> early        μ=0.500
+     Condições:
+       Rain       -> moderate     μ=0.500
+       Traffic    -> low          μ=1.000
+       Road       -> good         μ=1.000
+       Speed      -> fast         μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_B06
+======================================================================
+Descrição : Teste representativo da regra B06
+Esperado  : late
+Obtido    : late
+Delay     : 75.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  traffic            = 50.0
+  road_flow          = 75.0
+  speed              = 50.0
+  rain               = 50.0
+
+Regras ativadas:
+  B06    -> late         μ=1.000
+     Condições:
+       Traffic    -> medium       μ=1.000
+       Road       -> poor         μ=1.000
+       Speed      -> normal       μ=1.000
+  A03    -> late         μ=0.500
+     Condições:
+       Rain       -> moderate     μ=0.500
+       Traffic    -> medium       μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_B08
+======================================================================
+Descrição : Teste representativo da regra B08
+Esperado  : very_late
+Obtido    : very_late
+Delay     : 92.22
+Origem    : FUZZY
+
+Contexto utilizado:
+  traffic            = 95.0
+  road_flow          = 95.0
+  speed              = 75.0
+  rain               = 50.0
+
+Regras ativadas:
+  B01    -> very_late    μ=1.000
+     Condições:
+       Traffic    -> very_high    μ=1.000
+  B08    -> very_late    μ=1.000
+     Condições:
+       Traffic    -> very_high    μ=1.000
+       Road       -> very_poor    μ=1.000
+       Speed      -> slow         μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_C01
+======================================================================
+Descrição : Teste representativo da regra C01
+Esperado  : very_early
+Obtido    : early
+Delay     : 33.24
+Origem    : FUZZY
+
+Contexto utilizado:
+  road_flow          = 5.0
+  speed              = 5.0
+  rain               = 50.0
+  traffic            = 50.0
+
+Regras ativadas:
+  C01    -> very_early   μ=1.000
+     Condições:
+       Road       -> excellent    μ=1.000
+       Speed      -> very_fast    μ=1.000
+  I05    -> early        μ=1.000
+     Condições:
+       Traffic    -> medium       μ=1.000
+       Road       -> excellent    μ=1.000
+       Speed      -> very_fast    μ=1.000
+  A03    -> late         μ=0.500
+     Condições:
+       Rain       -> moderate     μ=0.500
+       Traffic    -> medium       μ=1.000
+
+STATUS: FAIL
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_C04
+======================================================================
+Descrição : Teste representativo da regra C04
+Esperado  : late
+Obtido    : late
+Delay     : 75.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  traffic            = 50.0
+  road_flow          = 75.0
+  speed              = 75.0
+  rain               = 50.0
+
+Regras ativadas:
+  C04    -> late         μ=1.000
+     Condições:
+       Traffic    -> medium       μ=1.000
+       Road       -> poor         μ=1.000
+       Speed      -> slow         μ=1.000
+  A03    -> late         μ=0.500
+     Condições:
+       Rain       -> moderate     μ=0.500
+       Traffic    -> medium       μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_C05
+======================================================================
+Descrição : Teste representativo da regra C05
+Esperado  : very_late
+Obtido    : very_late
+Delay     : 92.22
+Origem    : FUZZY
+
+Contexto utilizado:
+  traffic            = 75.0
+  road_flow          = 95.0
+  speed              = 95.0
+  rain               = 50.0
+
+Regras ativadas:
+  C05    -> very_late    μ=1.000
+     Condições:
+       Traffic    -> high         μ=1.000
+       Road       -> very_poor    μ=1.000
+       Speed      -> very_slow    μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_C06
+======================================================================
+Descrição : Teste representativo da regra C06
+Esperado  : on_time
+Obtido    : on_time
+Delay     : 50.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 30.0
+  traffic            = 25.0
+  road_flow          = 5.0
+  speed              = 50.0
+
+Regras ativadas:
+  A04    -> on_time      μ=1.000
+     Condições:
+       Rain       -> light        μ=1.000
+       Traffic    -> low          μ=1.000
+  C06    -> on_time      μ=1.000
+     Condições:
+       Rain       -> light        μ=1.000
+       Traffic    -> low          μ=1.000
+       Road       -> excellent    μ=1.000
+       Speed      -> normal       μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_C07
+======================================================================
+Descrição : Teste representativo da regra C07
+Esperado  : very_late
+Obtido    : very_late
+Delay     : 83.54
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 93.0
+  traffic            = 75.0
+  road_flow          = 95.0
+  speed              = 75.0
+
+Regras ativadas:
+  A01    -> very_late    μ=1.000
+     Condições:
+       Rain       -> heavy        μ=1.000
+       Traffic    -> high         μ=1.000
+  A02    -> very_late    μ=1.000
+     Condições:
+       Rain       -> heavy        μ=1.000
+       Speed      -> slow         μ=1.000
+  B02    -> late         μ=1.000
+     Condições:
+       Traffic    -> high         μ=1.000
+       Speed      -> slow         μ=1.000
+  C07    -> very_late    μ=1.000
+     Condições:
+       Rain       -> heavy        μ=1.000
+       Traffic    -> high         μ=1.000
+       Road       -> very_poor    μ=1.000
+       Speed      -> slow         μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_E01
+======================================================================
+Descrição : Teste representativo da regra E01
+Esperado  : late
+Obtido    : late
+Delay     : 62.50
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 60.0
+  traffic            = 50.0
+  road_flow          = 50.0
+  speed              = 50.0
+
+Regras ativadas:
+  A03    -> late         μ=1.000
+     Condições:
+       Rain       -> moderate     μ=1.000
+       Traffic    -> medium       μ=1.000
+  B03    -> on_time      μ=1.000
+     Condições:
+       Traffic    -> medium       μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> normal       μ=1.000
+  E01    -> late         μ=1.000
+     Condições:
+       Rain       -> moderate     μ=1.000
+       Traffic    -> medium       μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> normal       μ=1.000
+  H03    -> on_time      μ=1.000
+     Condições:
+       Traffic    -> medium       μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> normal       μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_E02
+======================================================================
+Descrição : Teste representativo da regra E02
+Esperado  : on_time
+Obtido    : on_time
+Delay     : 50.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 30.0
+  traffic            = 50.0
+  road_flow          = 25.0
+  speed              = 50.0
+
+Regras ativadas:
+  E02    -> on_time      μ=1.000
+     Condições:
+       Rain       -> light        μ=1.000
+       Traffic    -> medium       μ=1.000
+       Road       -> good         μ=1.000
+       Speed      -> normal       μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_E03
+======================================================================
+Descrição : Teste representativo da regra E03
+Esperado  : on_time
+Obtido    : on_time
+Delay     : 50.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 60.0
+  traffic            = 25.0
+  road_flow          = 50.0
+  speed              = 50.0
+
+Regras ativadas:
+  E03    -> on_time      μ=1.000
+     Condições:
+       Rain       -> moderate     μ=1.000
+       Traffic    -> low          μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> normal       μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_E05
+======================================================================
+Descrição : Teste representativo da regra E05
+Esperado  : late
+Obtido    : late
+Delay     : 75.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 30.0
+  traffic            = 50.0
+  road_flow          = 75.0
+  speed              = 75.0
+
+Regras ativadas:
+  C04    -> late         μ=1.000
+     Condições:
+       Traffic    -> medium       μ=1.000
+       Road       -> poor         μ=1.000
+       Speed      -> slow         μ=1.000
+  E05    -> late         μ=1.000
+     Condições:
+       Rain       -> light        μ=1.000
+       Traffic    -> medium       μ=1.000
+       Road       -> poor         μ=1.000
+       Speed      -> slow         μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_F01
+======================================================================
+Descrição : Teste representativo da regra F01
+Esperado  : very_late
+Obtido    : very_late
+Delay     : 83.54
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 93.0
+  traffic            = 75.0
+  road_flow          = 75.0
+  speed              = 75.0
+
+Regras ativadas:
+  A01    -> very_late    μ=1.000
+     Condições:
+       Rain       -> heavy        μ=1.000
+       Traffic    -> high         μ=1.000
+  A02    -> very_late    μ=1.000
+     Condições:
+       Rain       -> heavy        μ=1.000
+       Speed      -> slow         μ=1.000
+  B02    -> late         μ=1.000
+     Condições:
+       Traffic    -> high         μ=1.000
+       Speed      -> slow         μ=1.000
+  F01    -> very_late    μ=1.000
+     Condições:
+       Rain       -> heavy        μ=1.000
+       Traffic    -> high         μ=1.000
+       Road       -> poor         μ=1.000
+       Speed      -> slow         μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_F02
+======================================================================
+Descrição : Teste representativo da regra F02
+Esperado  : very_late
+Obtido    : very_late
+Delay     : 92.22
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 93.0
+  traffic            = 95.0
+  road_flow          = 95.0
+  speed              = 95.0
+
+Regras ativadas:
+  B01    -> very_late    μ=1.000
+     Condições:
+       Traffic    -> very_high    μ=1.000
+  F02    -> very_late    μ=1.000
+     Condições:
+       Rain       -> heavy        μ=1.000
+       Traffic    -> very_high    μ=1.000
+       Road       -> very_poor    μ=1.000
+       Speed      -> very_slow    μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_F03
+======================================================================
+Descrição : Teste representativo da regra F03
+Esperado  : late
+Obtido    : late
+Delay     : 75.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 60.0
+  traffic            = 75.0
+  road_flow          = 75.0
+  speed              = 75.0
+
+Regras ativadas:
+  B02    -> late         μ=1.000
+     Condições:
+       Traffic    -> high         μ=1.000
+       Speed      -> slow         μ=1.000
+  F03    -> late         μ=1.000
+     Condições:
+       Rain       -> moderate     μ=1.000
+       Traffic    -> high         μ=1.000
+       Road       -> poor         μ=1.000
+       Speed      -> slow         μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_F04
+======================================================================
+Descrição : Teste representativo da regra F04
+Esperado  : late
+Obtido    : very_late
+Delay     : 83.54
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 93.0
+  traffic            = 50.0
+  road_flow          = 50.0
+  speed              = 75.0
+
+Regras ativadas:
+  A02    -> very_late    μ=1.000
+     Condições:
+       Rain       -> heavy        μ=1.000
+       Speed      -> slow         μ=1.000
+  F04    -> late         μ=1.000
+     Condições:
+       Rain       -> heavy        μ=1.000
+       Traffic    -> medium       μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> slow         μ=1.000
+
+STATUS: FAIL
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_F05
+======================================================================
+Descrição : Teste representativo da regra F05
+Esperado  : late
+Obtido    : very_late
+Delay     : 83.54
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 93.0
+  traffic            = 75.0
+  road_flow          = 50.0
+  speed              = 50.0
+
+Regras ativadas:
+  A01    -> very_late    μ=1.000
+     Condições:
+       Rain       -> heavy        μ=1.000
+       Traffic    -> high         μ=1.000
+  F05    -> late         μ=1.000
+     Condições:
+       Rain       -> heavy        μ=1.000
+       Traffic    -> high         μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> normal       μ=1.000
+
+STATUS: FAIL
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_G01
+======================================================================
+Descrição : Teste representativo da regra G01
+Esperado  : late
+Obtido    : very_late
+Delay     : 83.54
+Origem    : FUZZY
+
+Contexto utilizado:
+  traffic            = 95.0
+  road_flow          = 5.0
+  speed              = 95.0
+  rain               = 50.0
+
+Regras ativadas:
+  B01    -> very_late    μ=1.000
+     Condições:
+       Traffic    -> very_high    μ=1.000
+  G01    -> late         μ=1.000
+     Condições:
+       Traffic    -> very_high    μ=1.000
+       Road       -> excellent    μ=1.000
+       Speed      -> very_slow    μ=1.000
+
+STATUS: FAIL
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_G02
+======================================================================
+Descrição : Teste representativo da regra G02
+Esperado  : late
+Obtido    : late
+Delay     : 75.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 93.0
+  traffic            = 5.0
+  road_flow          = 5.0
+  speed              = 25.0
+
+Regras ativadas:
+  G02    -> late         μ=1.000
+     Condições:
+       Rain       -> heavy        μ=1.000
+       Traffic    -> very_low     μ=1.000
+       Road       -> excellent    μ=1.000
+       Speed      -> fast         μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_G03
+======================================================================
+Descrição : Teste representativo da regra G03
+Esperado  : very_late
+Obtido    : very_late
+Delay     : 92.22
+Origem    : FUZZY
+
+Contexto utilizado:
+  traffic            = 95.0
+  road_flow          = 75.0
+  speed              = 95.0
+  rain               = 50.0
+
+Regras ativadas:
+  B01    -> very_late    μ=1.000
+     Condições:
+       Traffic    -> very_high    μ=1.000
+  G03    -> very_late    μ=1.000
+     Condições:
+       Traffic    -> very_high    μ=1.000
+       Road       -> poor         μ=1.000
+       Speed      -> very_slow    μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_G04
+======================================================================
+Descrição : Teste representativo da regra G04
+Esperado  : very_late
+Obtido    : very_late
+Delay     : 92.22
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 60.0
+  traffic            = 95.0
+  road_flow          = 50.0
+  speed              = 75.0
+
+Regras ativadas:
+  B01    -> very_late    μ=1.000
+     Condições:
+       Traffic    -> very_high    μ=1.000
+  G04    -> very_late    μ=1.000
+     Condições:
+       Rain       -> moderate     μ=1.000
+       Traffic    -> very_high    μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> slow         μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_G05
+======================================================================
+Descrição : Teste representativo da regra G05
+Esperado  : on_time
+Obtido    : on_time
+Delay     : 50.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 30.0
+  traffic            = 75.0
+  road_flow          = 5.0
+  speed              = 25.0
+
+Regras ativadas:
+  G05    -> on_time      μ=1.000
+     Condições:
+       Rain       -> light        μ=1.000
+       Traffic    -> high         μ=1.000
+       Road       -> excellent    μ=1.000
+       Speed      -> fast         μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_H01
+======================================================================
+Descrição : Teste representativo da regra H01
+Esperado  : on_time
+Obtido    : on_time
+Delay     : 50.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  traffic            = 5.0
+  road_flow          = 50.0
+  speed              = 50.0
+  rain               = 50.0
+
+Regras ativadas:
+  H01    -> on_time      μ=1.000
+     Condições:
+       Traffic    -> very_low     μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> normal       μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_H03
+======================================================================
+Descrição : Teste representativo da regra H03
+Esperado  : on_time
+Obtido    : late
+Delay     : 60.69
+Origem    : FUZZY
+
+Contexto utilizado:
+  traffic            = 50.0
+  road_flow          = 50.0
+  speed              = 50.0
+  rain               = 50.0
+
+Regras ativadas:
+  B03    -> on_time      μ=1.000
+     Condições:
+       Traffic    -> medium       μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> normal       μ=1.000
+  H03    -> on_time      μ=1.000
+     Condições:
+       Traffic    -> medium       μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> normal       μ=1.000
+  A03    -> late         μ=0.500
+     Condições:
+       Rain       -> moderate     μ=0.500
+       Traffic    -> medium       μ=1.000
+  E01    -> late         μ=0.500
+     Condições:
+       Rain       -> moderate     μ=0.500
+       Traffic    -> medium       μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> normal       μ=1.000
+
+STATUS: FAIL
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_H04
+======================================================================
+Descrição : Teste representativo da regra H04
+Esperado  : late
+Obtido    : late
+Delay     : 75.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  traffic            = 75.0
+  road_flow          = 50.0
+  speed              = 75.0
+  rain               = 50.0
+
+Regras ativadas:
+  B02    -> late         μ=1.000
+     Condições:
+       Traffic    -> high         μ=1.000
+       Speed      -> slow         μ=1.000
+  H04    -> late         μ=1.000
+     Condições:
+       Traffic    -> high         μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> slow         μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_H05
+======================================================================
+Descrição : Teste representativo da regra H05
+Esperado  : very_late
+Obtido    : very_late
+Delay     : 92.22
+Origem    : FUZZY
+
+Contexto utilizado:
+  traffic            = 95.0
+  road_flow          = 50.0
+  speed              = 95.0
+  rain               = 50.0
+
+Regras ativadas:
+  B01    -> very_late    μ=1.000
+     Condições:
+       Traffic    -> very_high    μ=1.000
+  H05    -> very_late    μ=1.000
+     Condições:
+       Traffic    -> very_high    μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> very_slow    μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_H07
+======================================================================
+Descrição : Teste representativo da regra H07
+Esperado  : late
+Obtido    : late
+Delay     : 75.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 60.0
+  traffic            = 50.0
+  road_flow          = 50.0
+  speed              = 75.0
+
+Regras ativadas:
+  A03    -> late         μ=1.000
+     Condições:
+       Rain       -> moderate     μ=1.000
+       Traffic    -> medium       μ=1.000
+  H07    -> late         μ=1.000
+     Condições:
+       Rain       -> moderate     μ=1.000
+       Traffic    -> medium       μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> slow         μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_H08
+======================================================================
+Descrição : Teste representativo da regra H08
+Esperado  : very_late
+Obtido    : very_late
+Delay     : 83.54
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 93.0
+  traffic            = 75.0
+  road_flow          = 50.0
+  speed              = 75.0
+
+Regras ativadas:
+  A01    -> very_late    μ=1.000
+     Condições:
+       Rain       -> heavy        μ=1.000
+       Traffic    -> high         μ=1.000
+  A02    -> very_late    μ=1.000
+     Condições:
+       Rain       -> heavy        μ=1.000
+       Speed      -> slow         μ=1.000
+  B02    -> late         μ=1.000
+     Condições:
+       Traffic    -> high         μ=1.000
+       Speed      -> slow         μ=1.000
+  H04    -> late         μ=1.000
+     Condições:
+       Traffic    -> high         μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> slow         μ=1.000
+  H08    -> very_late    μ=1.000
+     Condições:
+       Rain       -> heavy        μ=1.000
+       Traffic    -> high         μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> slow         μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_I01
+======================================================================
+Descrição : Teste representativo da regra I01
+Esperado  : on_time
+Obtido    : early
+Delay     : 28.89
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 93.0
+  traffic            = 5.0
+  road_flow          = 5.0
+  speed              = 5.0
+
+Regras ativadas:
+  C01    -> very_early   μ=1.000
+     Condições:
+       Road       -> excellent    μ=1.000
+       Speed      -> very_fast    μ=1.000
+  I01    -> on_time      μ=1.000
+     Condições:
+       Rain       -> heavy        μ=1.000
+       Traffic    -> very_low     μ=1.000
+       Road       -> excellent    μ=1.000
+       Speed      -> very_fast    μ=1.000
+
+STATUS: FAIL
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_I02
+======================================================================
+Descrição : Teste representativo da regra I02
+Esperado  : early
+Obtido    : very_early
+Delay     : 16.46
+Origem    : FUZZY
+
+Contexto utilizado:
+  traffic            = 75.0
+  road_flow          = 5.0
+  speed              = 5.0
+  rain               = 50.0
+
+Regras ativadas:
+  C01    -> very_early   μ=1.000
+     Condições:
+       Road       -> excellent    μ=1.000
+       Speed      -> very_fast    μ=1.000
+  I02    -> early        μ=1.000
+     Condições:
+       Traffic    -> high         μ=1.000
+       Road       -> excellent    μ=1.000
+       Speed      -> very_fast    μ=1.000
+
+STATUS: FAIL
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_I03
+======================================================================
+Descrição : Teste representativo da regra I03
+Esperado  : on_time
+Obtido    : on_time
+Delay     : 50.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 30.0
+  traffic            = 50.0
+  road_flow          = 5.0
+  speed              = 25.0
+
+Regras ativadas:
+  I03    -> on_time      μ=1.000
+     Condições:
+       Rain       -> light        μ=1.000
+       Traffic    -> medium       μ=1.000
+       Road       -> excellent    μ=1.000
+       Speed      -> fast         μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_I04
+======================================================================
+Descrição : Teste representativo da regra I04
+Esperado  : early
+Obtido    : early
+Delay     : 25.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 60.0
+  traffic            = 25.0
+  road_flow          = 25.0
+  speed              = 25.0
+
+Regras ativadas:
+  B04    -> early        μ=1.000
+     Condições:
+       Traffic    -> low          μ=1.000
+       Road       -> good         μ=1.000
+       Speed      -> fast         μ=1.000
+  I04    -> early        μ=1.000
+     Condições:
+       Rain       -> moderate     μ=1.000
+       Traffic    -> low          μ=1.000
+       Road       -> good         μ=1.000
+       Speed      -> fast         μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_I05
+======================================================================
+Descrição : Teste representativo da regra I05
+Esperado  : early
+Obtido    : early
+Delay     : 33.24
+Origem    : FUZZY
+
+Contexto utilizado:
+  traffic            = 50.0
+  road_flow          = 5.0
+  speed              = 5.0
+  rain               = 50.0
+
+Regras ativadas:
+  C01    -> very_early   μ=1.000
+     Condições:
+       Road       -> excellent    μ=1.000
+       Speed      -> very_fast    μ=1.000
+  I05    -> early        μ=1.000
+     Condições:
+       Traffic    -> medium       μ=1.000
+       Road       -> excellent    μ=1.000
+       Speed      -> very_fast    μ=1.000
+  A03    -> late         μ=0.500
+     Condições:
+       Rain       -> moderate     μ=0.500
+       Traffic    -> medium       μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_J01
+======================================================================
+Descrição : Teste representativo da regra J01
+Esperado  : late
+Obtido    : very_late
+Delay     : 83.54
+Origem    : FUZZY
+
+Contexto utilizado:
+  traffic            = 95.0
+  road_flow          = 5.0
+  speed              = 25.0
+  rain               = 50.0
+
+Regras ativadas:
+  B01    -> very_late    μ=1.000
+     Condições:
+       Traffic    -> very_high    μ=1.000
+  J01    -> late         μ=1.000
+     Condições:
+       Traffic    -> very_high    μ=1.000
+       Road       -> excellent    μ=1.000
+       Speed      -> fast         μ=1.000
+
+STATUS: FAIL
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_J02
+======================================================================
+Descrição : Teste representativo da regra J02
+Esperado  : late
+Obtido    : late
+Delay     : 75.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  traffic            = 25.0
+  road_flow          = 95.0
+  speed              = 50.0
+  rain               = 50.0
+
+Regras ativadas:
+  J02    -> late         μ=1.000
+     Condições:
+       Traffic    -> low          μ=1.000
+       Road       -> very_poor    μ=1.000
+       Speed      -> normal       μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_J03
+======================================================================
+Descrição : Teste representativo da regra J03
+Esperado  : late
+Obtido    : late
+Delay     : 62.50
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 30.0
+  traffic            = 25.0
+  road_flow          = 95.0
+  speed              = 75.0
+
+Regras ativadas:
+  A04    -> on_time      μ=1.000
+     Condições:
+       Rain       -> light        μ=1.000
+       Traffic    -> low          μ=1.000
+  J03    -> late         μ=1.000
+     Condições:
+       Rain       -> light        μ=1.000
+       Traffic    -> low          μ=1.000
+       Road       -> very_poor    μ=1.000
+       Speed      -> slow         μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_J04
+======================================================================
+Descrição : Teste representativo da regra J04
+Esperado  : late
+Obtido    : late
+Delay     : 75.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 93.0
+  traffic            = 5.0
+  road_flow          = 5.0
+  speed              = 50.0
+
+Regras ativadas:
+  J04    -> late         μ=1.000
+     Condições:
+       Rain       -> heavy        μ=1.000
+       Traffic    -> very_low     μ=1.000
+       Road       -> excellent    μ=1.000
+       Speed      -> normal       μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_J05
+======================================================================
+Descrição : Teste representativo da regra J05
+Esperado  : late
+Obtido    : late
+Delay     : 75.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  traffic            = 50.0
+  road_flow          = 75.0
+  speed              = 95.0
+  rain               = 50.0
+
+Regras ativadas:
+  J05    -> late         μ=1.000
+     Condições:
+       Traffic    -> medium       μ=1.000
+       Road       -> poor         μ=1.000
+       Speed      -> very_slow    μ=1.000
+  A03    -> late         μ=0.500
+     Condições:
+       Rain       -> moderate     μ=0.500
+       Traffic    -> medium       μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_K01
+======================================================================
+Descrição : Teste representativo da regra K01
+Esperado  : on_time
+Obtido    : on_time
+Delay     : 50.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 5.0
+  traffic            = 5.0
+  road_flow          = 25.0
+  speed              = 50.0
+
+Regras ativadas:
+  K01    -> on_time      μ=1.000
+     Condições:
+       Rain       -> none         μ=1.000
+       Traffic    -> very_low     μ=1.000
+       Road       -> good         μ=1.000
+       Speed      -> normal       μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_K02
+======================================================================
+Descrição : Teste representativo da regra K02
+Esperado  : on_time
+Obtido    : on_time
+Delay     : 50.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 5.0
+  traffic            = 25.0
+  road_flow          = 25.0
+  speed              = 50.0
+
+Regras ativadas:
+  K02    -> on_time      μ=1.000
+     Condições:
+       Rain       -> none         μ=1.000
+       Traffic    -> low          μ=1.000
+       Road       -> good         μ=1.000
+       Speed      -> normal       μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_K03
+======================================================================
+Descrição : Teste representativo da regra K03
+Esperado  : early
+Obtido    : early
+Delay     : 25.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 5.0
+  traffic            = 5.0
+  road_flow          = 25.0
+  speed              = 25.0
+
+Regras ativadas:
+  K03    -> early        μ=1.000
+     Condições:
+       Rain       -> none         μ=1.000
+       Traffic    -> very_low     μ=1.000
+       Road       -> good         μ=1.000
+       Speed      -> fast         μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_K04
+======================================================================
+Descrição : Teste representativo da regra K04
+Esperado  : early
+Obtido    : early
+Delay     : 25.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 5.0
+  traffic            = 25.0
+  road_flow          = 25.0
+  speed              = 25.0
+
+Regras ativadas:
+  A05    -> early        μ=1.000
+     Condições:
+       Rain       -> none         μ=1.000
+       Traffic    -> low          μ=1.000
+       Speed      -> fast         μ=1.000
+  B04    -> early        μ=1.000
+     Condições:
+       Traffic    -> low          μ=1.000
+       Road       -> good         μ=1.000
+       Speed      -> fast         μ=1.000
+  K04    -> early        μ=1.000
+     Condições:
+       Rain       -> none         μ=1.000
+       Traffic    -> low          μ=1.000
+       Road       -> good         μ=1.000
+       Speed      -> fast         μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_K05
+======================================================================
+Descrição : Teste representativo da regra K05
+Esperado  : on_time
+Obtido    : on_time
+Delay     : 50.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 30.0
+  traffic            = 5.0
+  road_flow          = 25.0
+  speed              = 50.0
+
+Regras ativadas:
+  K05    -> on_time      μ=1.000
+     Condições:
+       Rain       -> light        μ=1.000
+       Traffic    -> very_low     μ=1.000
+       Road       -> good         μ=1.000
+       Speed      -> normal       μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_K06
+======================================================================
+Descrição : Teste representativo da regra K06
+Esperado  : on_time
+Obtido    : on_time
+Delay     : 50.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 30.0
+  traffic            = 25.0
+  road_flow          = 25.0
+  speed              = 50.0
+
+Regras ativadas:
+  A04    -> on_time      μ=1.000
+     Condições:
+       Rain       -> light        μ=1.000
+       Traffic    -> low          μ=1.000
+  K06    -> on_time      μ=1.000
+     Condições:
+       Rain       -> light        μ=1.000
+       Traffic    -> low          μ=1.000
+       Road       -> good         μ=1.000
+       Speed      -> normal       μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+TESTE T_K07
+======================================================================
+Descrição : Teste representativo da regra K07
+Esperado  : on_time
+Obtido    : on_time
+Delay     : 50.00
+Origem    : FUZZY
+
+Contexto utilizado:
+  rain               = 5.0
+  traffic            = 5.0
+  road_flow          = 50.0
+  speed              = 50.0
+
+Regras ativadas:
+  H01    -> on_time      μ=1.000
+     Condições:
+       Traffic    -> very_low     μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> normal       μ=1.000
+  K07    -> on_time      μ=1.000
+     Condições:
+       Rain       -> none         μ=1.000
+       Traffic    -> very_low     μ=1.000
+       Road       -> average      μ=1.000
+       Speed      -> normal       μ=1.000
+
+STATUS: PASS
+----------------------------------------------------------------------
+
+======================================================================
+RELATÓRIO DE COBERTURA
+======================================================================
+
+============================================================
+RULE COVERAGE
+============================================================
+Total rules : 54
+Used rules  : 54
+Unused      : 0
+Coverage    : 100.00%
+
+Unused rules
+------------------------------------------------------------
